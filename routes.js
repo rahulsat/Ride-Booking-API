@@ -3,19 +3,19 @@ const { User, Driver, Ride } = require('./models');
 const router = express.Router();
 const mongoose = require("mongoose");
 
-/** 1. Get All Users */
+
 router.get('/users', async (req, res) => {
     const users = await User.find();
     res.json(users);
 });
 
-/** 2. Get All Drivers */
+
 router.get('/drivers', async (req, res) => {
     const drivers = await Driver.find();
     res.json(drivers);
 });
 
-/** 3. Calculate Fare */
+
 router.get('/calculate-fare', (req, res) => {
     const distance = 25;
     const baseFare = 50;
@@ -24,7 +24,7 @@ router.get('/calculate-fare', (req, res) => {
     res.json({ fare: totalFare });
 });
 
-/** 4. Request a Ride */
+
 router.post('/request-ride', async (req, res) => {
     try {
         console.log("Incoming Ride Request:", req.body);
@@ -34,7 +34,7 @@ router.post('/request-ride', async (req, res) => {
             return res.status(400).json({ message: "Missing required fields" });
         }
 
-        // Convert userId to ObjectId
+   
         if (!mongoose.Types.ObjectId.isValid(userId)) {
             return res.status(400).json({ message: "Invalid User ID format" });
         }
@@ -63,7 +63,7 @@ router.post('/request-ride', async (req, res) => {
     }
 });
 
-/** 5. Accept Ride */
+
 router.post('/accept-ride', async (req, res) => {
     const { rideId, driverId } = req.body;
 
@@ -73,7 +73,7 @@ router.post('/accept-ride', async (req, res) => {
     res.json({ message: "Ride Accepted" });
 });
 
-/** 6. Complete Ride */
+
 router.post('/complete-ride', async (req, res) => {
     const { rideId, driverId } = req.body;
 
@@ -82,7 +82,7 @@ router.post('/complete-ride', async (req, res) => {
 
     res.json({ message: "Ride Completed" });
 });
-/** 7. Add a New User */
+
 router.post('/users', async (req, res) => {
     try {
         const { name, email, phone, location, destination } = req.body;
@@ -101,7 +101,7 @@ router.post('/users', async (req, res) => {
 });
 
 
-/** 8. Add a New Driver */
+
 router.post('/drivers', async (req, res) => {
     const { name, phone, vehicle } = req.body;
     

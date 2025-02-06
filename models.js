@@ -1,6 +1,5 @@
 const mongoose = require('mongoose');
 
-// User Schema
 const UserSchema = new mongoose.Schema({
     name: String,
     email: String,
@@ -9,7 +8,7 @@ const UserSchema = new mongoose.Schema({
     destination: String
 });
 
-// Driver Schema
+
 const DriverSchema = new mongoose.Schema({
     name: String,
     phone: String,
@@ -17,7 +16,6 @@ const DriverSchema = new mongoose.Schema({
     vehicle: String
 });
 
-// Ride Schema
 const RideSchema = new mongoose.Schema({
     userId: mongoose.Schema.Types.ObjectId,
     driverId: mongoose.Schema.Types.ObjectId,
